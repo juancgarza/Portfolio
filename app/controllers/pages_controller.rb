@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @skills = Skills.all
+    @skills = Skill.all
   end
 
   def about
