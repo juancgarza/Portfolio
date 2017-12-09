@@ -37,4 +37,13 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+
+    respond_to do |format|
+      format.html {redirect_to projects_url, notice:"Record was removed"}
+    end
+  end
+
 end
