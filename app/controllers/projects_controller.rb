@@ -4,6 +4,7 @@ class ProjectsController < ApplicationController
   end
   def new
     @project = Project.new
+    3.times { @project.technologies.build }
   end
 
   def show
@@ -11,7 +12,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(params.require(:project).permit(:title,:subtitle,:body))
+    @project = Project.new(params.require(:project).permit(:title,:subtitle,:body,technologies_attributes:[:name]))
 
     respond_to do |format|
       if @project.save
@@ -39,8 +40,8 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
+    @technology_set = Technology.find(params[:project_id])
     @project.destroy
-
     respond_to do |format|
       format.html {redirect_to projects_url, notice:"Record was removed"}
     end

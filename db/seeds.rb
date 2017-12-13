@@ -40,3 +40,11 @@ end
     thumb_image:"http://via.placeholder.com/100x100"
   )
 end
+
+3.times do | technology |
+  Project.last.technologies.create!(
+    name: "Technology #{technology}"
+  )
+end
+
+puts "3 technologies created"
