@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :set_project, only: [:show,:edit,:update,:destroy]
   def index
     @projects = Project.all
   end
@@ -8,11 +9,10 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
   end
 
   def create
-    @project = Project.new(params.require(:project).permit(:title,:subtitle,:body,technologies_attributes:[:name]))
+    @project = Project.new(project_params)
 
     respond_to do |format|
       if @project.save
@@ -24,13 +24,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
   end
 
   def update
-    @project = Project.find(params[:id])
     respond_to do |format|
-      if @project.update(params.require(:project).permit(:title,:subtitle,:body))
+      if @project.update(project_params)
         format.html { redirect_to projects_path, notice: 'Project was successfully updated.' }
       else
         format.html { render :edit }
@@ -39,12 +37,23 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = Project.find(params[:id])
     @technology_set = Technology.find(params[:project_id])
     @project.destroy
     respond_to do |format|
       format.html {redirect_to projects_url, notice:"Record was removed"}
     end
+  end
+
+  private
+  def set_project
+    @project = Project.find(params[:id])
+  end
+
+  def project_params
+    params.require(:project).permit(:title,
+                                    :subtitle,
+                                    :body,
+                                    technologies_attributes:[:name])
   end
 
 end
