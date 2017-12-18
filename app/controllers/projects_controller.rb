@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show,:edit,:update,:destroy]
   layout 'project'
+  before_action :set_project, only: [:show,:edit,:update,:destroy]
   def index
     @projects = Project.all
   end
@@ -38,7 +38,6 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @technology_set = Technology.find(params[:project_id])
     @project.destroy
     respond_to do |format|
       format.html {redirect_to projects_url, notice:"Record was removed"}
