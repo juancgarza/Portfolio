@@ -21,6 +21,8 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'devise'
 
+gem 'jquery-rails'
+
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
 # Use CoffeeScript for .coffee assets and views
