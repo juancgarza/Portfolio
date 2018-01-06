@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
-  layout 'project'
+  # layout 'project'
   before_action :set_project, only: [:show,:edit,:update,:destroy]
+  access all: [:show,:index], user: {except: [:destroy,:new,:create,:update,:edit]} , site_admin: :all
   def index
     @projects = Project.all
   end
