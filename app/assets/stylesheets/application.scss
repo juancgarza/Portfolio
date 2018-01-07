@@ -166,6 +166,20 @@ body {
   color: black;
   text-align: left;
 }
+.card {
+  width: 100%;
+  height: auto;
+}
 .auth-links a {
   color: black;
+}
+.auth-links.register-text {
+  text-align: right;
+}
+
+
+.login > .card{
+  width: 22rem;
+  margin: 0 auto;
+  float: none;
 }
