@@ -1,0 +1,8 @@
+<div class="blog-header">
+  <div class="container">
+    <h1 class="blog-title">My Blog</h1>
+    <p class="lead blog-description"><i>"The greatest of all weaknesses is the fear of appearing weak."</i>
+      - J.B. Bossuet</p>
+    <%= link_to 'New Blog', new_blog_path if logged_in?(:site_admin) %>
+  </div>
+</div>
