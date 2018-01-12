@@ -1,12 +1,19 @@
-<%= image_tag @project.main_image %>
-
-<h1><%= @project.title %></h1>
-<p><%= @project.body %></p>
-<h2>Technologies used:</h2>
-<ul>
-  <% @project.technologies.each do |t| %>
-  <li>
-    <%= t.name %>
-  </li>
-  <% end %>
-</ul>
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <%= image_tag @project.main_image %>
+    </div>
+    <div class="col-md-5">
+      <h1><%= @project.title %></h1>
+      <em><%= @project.subtitle %></em>
+      <h3>Technologies used:</h3>
+      <ul>
+        <% @project.technologies.each do |t| %>
+        <li>
+          <%= t.name %>
+        </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
