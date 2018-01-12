@@ -8,4 +8,41 @@ module ApplicationHelper
      link_to 'Logout', destroy_user_session_path , method: :delete , class: style
      end
   end
+
+  def nav_items_list
+    [
+      {
+        url: root_path,
+        title: "Home"
+      },
+      {
+        url: about_me_path,
+        title: "About Me"
+      },
+      {
+        url: contact_path,
+        title: "Contact"
+      },
+      {
+        url: blogs_path,
+        title: "Blog"
+      },
+      {
+        url: projects_path,
+        title: "Portfolio"
+      }
+    ]
+  end
+  def nav_helper style ,tag_type
+    nav_links = ''
+    nav_items_list.each do |item|
+      a =  "<#{tag_type}><a href='#{item[:url]}' class='#{style} #{nav_active? item[:url]}'>#{item[:title]}</a </#{tag_type}>"
+      nav_links << a
+    end
+    nav_links.html_safe
+  end
+
+  def nav_active? path
+    "active" if current_page? path
+  end
 end
