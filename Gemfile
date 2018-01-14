@@ -22,6 +22,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'devise'
 
 gem 'jquery-rails'
+gem "github_api"
 
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'kaminari'

@@ -4,7 +4,9 @@ class ProjectsController < ApplicationController
   access all: [:show,:index], user: {except: [:destroy,:new,:create,:update,:edit]} , site_admin: :all
   def index
     @projects = Project.all
+    @repos = Github.repos.list user:"juancgarza"
   end
+
   def new
     @project = Project.new
     3.times { @project.technologies.build }

@@ -1,8 +1,13 @@
 <div class="album text-muted">
   <div class="container">
     <div class="row">
-      <!--  <%= link_to "Create new Item", new_project_path  if logged_in?(:site_admin) %> -->
-        <%= render @projects %>
+      <% @repos.each do |n| %>
+      <div class="card">
+        <a href="<%= n.svn_url%>" class="card-text git-card"><%= n.name %></a>
+        <input type="text" value="<%= n.git_url%>" id="myInput" class="form-control">
+        <button type="copy-button" name="copy-button" onclick="copyFunction()" class="btn btn-secondary"><%= fa_icon "copy" %> Copy GitClone to clipboard</button>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>
