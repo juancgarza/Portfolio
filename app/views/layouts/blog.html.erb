@@ -16,10 +16,11 @@
     <%= render 'shared/blog_nav' %>
 
     <%= render 'shared/blog_masthead' %>
-
-    <div class="row">
-      <%= yield %>
-      <%= render 'shared/blog_sidebar' %>
+    <div class="container">
+      <div class="row">
+        <%= yield %>
+        <%= render 'shared/blog_sidebar' %>
+      </div>
     </div>
     <%= render 'shared/blog_footer' %>
   </div>
