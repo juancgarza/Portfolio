@@ -10,6 +10,9 @@ class Project < ApplicationRecord
     where(subtitle:"Angular")
   end
 
+  def self.by_position
+    order("position ASC")
+  end
   scope :ruby_on_rails_project_items, -> {where(subtitle:"Ruby On Rails")}
 
   after_initialize :set_defaults
