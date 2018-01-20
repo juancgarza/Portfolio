@@ -1,4 +1,16 @@
 module ApplicationHelper
+  require 'redcarpet'
+  require 'rouge'
+  require 'rouge/plugins/redcarpet'
+
+  class HTML < Redcarpet::Render::HTML
+    include Rouge::Plugins::Redcarpet
+
+    def block_code(code, language)
+      Rouge.highlight(code, language || 'text', 'html')
+    end
+  end
+
   def login_helper style= ''
      if current_user.is_a?(GuestUser)
        (link_to 'Register', new_user_registration_path , class: style) +
@@ -45,4 +57,27 @@ module ApplicationHelper
   def nav_active? path
     "active" if current_page? path
   end
+
+  def markdown(text)
+      options = {
+        filter_html:     true,
+        hard_wrap:       true,
+        link_attributes: { rel: 'nofollow', target: "_blank" }
+      }
+
+      extensions = {
+        autolink:           true,
+        highlight:          true,
+        superscript:        true,
+        disable_indented_code_blocks: true,
+        space_after_headers: true,
+        fenced_code_blocks: true
+      }
+
+      #renderer = Redcarpet::Render::HTML.new(options)
+      renderer = HTML.new(options)
+      markdown = Redcarpet::Markdown.new(renderer, extensions)
+
+      markdown.render(text).html_safe
+    end
 end

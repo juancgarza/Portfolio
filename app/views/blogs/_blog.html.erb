@@ -9,6 +9,6 @@
   </p>
   <% end %>
   <p>
-    <%= blog.body %>
+    <%= raw(markdown(blog.body)) %>
   </p>
 </div>
