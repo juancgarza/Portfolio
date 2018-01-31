@@ -1,4 +1,5 @@
 @import "bootstrap";
+@import "font-awesome";
 /*
  * Globals
  */
@@ -187,4 +188,8 @@ body {
 .app-nav span {
   display: inline-flex;
   margin-left: 15px;
+}
+
+.fa.fa-bars {
+  color: white;
 }
